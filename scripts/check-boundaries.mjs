@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { filesUnder } from './files.mjs';
 const normalize = (value) => value.replaceAll('\\', '/');
@@ -8,6 +9,16 @@ const sourceFiles = [...(await filesUnder('apps')), ...(await filesUnder('packag
   (file) => /\.(tsx?|mts|cts)$/.test(file),
 );
 let errors = 0;
+const ignoredSources = spawnSync('git', ['check-ignore', '--no-index', '-z', '--stdin'], {
+  input: sourceFiles.map(normalize).join('\0') + '\0',
+  encoding: 'utf8',
+});
+if (![0, 1].includes(ignoredSources.status))
+  throw new Error('Cannot check source visibility in Git');
+for (const ignored of ignoredSources.stdout.split('\0').filter(Boolean)) {
+  console.error(`${ignored}: 源码被 gitignore 忽略，干净克隆将缺失此文件`);
+  errors++;
+}
 function reject(file, target, reason) {
   console.error(`${file} → ${target}: ${reason}`);
   errors++;
