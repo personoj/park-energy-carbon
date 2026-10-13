@@ -1,0 +1,14 @@
+name: 缺陷
+description: 报告可复现的问题
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤、预期与实际结果
+      description: 使用合成数据，不贴凭据和真实文件。
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 系统、浏览器、Node 版本与提交号

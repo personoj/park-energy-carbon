@@ -1,0 +1,24 @@
+{
+  "name": "park-energy-carbon",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.32.0",
+  "engines": {
+    "node": ">=24.10.0 <25",
+    "pnpm": "10.32.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @park/web --filter @park/api dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:boundaries": "node scripts/check-boundaries.mjs",
+    "check:public": "node scripts/check-public.mjs",
+    "check": "pnpm check:format && pnpm typecheck && pnpm check:docs && pnpm check:boundaries && pnpm build",
+    "format": "prettier --write .",
+    "check:format": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}

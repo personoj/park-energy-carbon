@@ -1,0 +1,22 @@
+name: 功能
+description: 明确模块、用户行为与验收
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 用户场景与预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 模块、接口与数据影响
+      description: 不要包含真实业务数据、密钥或客户文件。
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+    validations:
+      required: true

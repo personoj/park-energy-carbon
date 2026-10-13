@@ -1,0 +1,3 @@
+source,point_id,interval_start,interval_end,value,unit,quality
+synthetic-demo,demo-pv-meter,2026-01-01T08:00:00+08:00,2026-01-01T09:00:00+08:00,12.5,kWh,synthetic
+synthetic-demo,demo-grid-meter,2026-01-01T08:00:00+08:00,2026-01-01T09:00:00+08:00,25.0,kWh,synthetic
